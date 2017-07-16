@@ -1,23 +1,24 @@
 package mywrk.domain;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class User {
-	@NotNull(message="Please give a username.")
-	@Size(min = 5, max = 16)
+	@NotBlank(message="Username cannot be empty.")
+	@Size(min = 5, max = 16, message="Username should be aleast 5 characters long and atmost 16 characters long.")
 	private String userName;
-	@NotNull(message="Please give a password.")
+	@NotBlank(message="Password cannot be empty.")
 	@Size(min = 8, message="Password should be atleast 8 characters.")
 	private String password;
-	@NotNull
-	@Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", flags = Pattern.Flag.CASE_INSENSITIVE, message = "Wrong email!")
+	@NotBlank(message="Email cannot be empty.")
+	@Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", flags = Pattern.Flag.CASE_INSENSITIVE, message = "Wrong email format!")
 	private String email;
-	@NotNull
-	@Size(min = 5, max = 16)
+	@NotBlank(message="First name cannot be empty.")
+	@Size(min = 5, max = 16, message="First name should be aleast 5 characters long and atmost 16 characters long.")
 	private String firstName;
-	@Size(min = 5, max = 16)
+	
 	private String lastName;
 
 	public String getUserName() {
