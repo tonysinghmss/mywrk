@@ -1,25 +1,36 @@
 package mywrk.domain;
 
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import mywrk.validation.PasswordMatches;
+import mywrk.validation.ValidEmail;
+
+@PasswordMatches
 public class User {
-	@NotBlank(message="Username cannot be empty.")
-	@Size(min = 5, max = 16, message="Username should be aleast 5 characters long and atmost 16 characters long.")
+	@NotBlank(message = "Username cannot be empty.")
+	@Size(min = 5, max = 16, message = "Username should be aleast 5 characters long and atmost 16 characters long.")
 	private String userName;
-	@NotBlank(message="Password cannot be empty.")
-	@Size(min = 8, message="Password should be atleast 8 characters.")
+	@NotBlank(message = "Password cannot be empty.")
+	@Size(min = 8, message = "Password should be atleast 8 characters.")
 	private String password;
-	@NotBlank(message="Email cannot be empty.")
-	@Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", flags = Pattern.Flag.CASE_INSENSITIVE, message = "Wrong email format!")
+	private String matchingPassword;
+	@ValidEmail
+	@NotBlank(message = "Email cannot be empty.")
 	private String email;
-	@NotBlank(message="First name cannot be empty.")
-	@Size(min = 5, max = 16, message="First name should be aleast 5 characters long and atmost 16 characters long.")
+	@NotBlank(message = "First name cannot be empty.")
+	@Size(min = 5, max = 16, message = "First name should be aleast 5 characters long and atmost 16 characters long.")
 	private String firstName;
-	
 	private String lastName;
+	
+	public String getMatchingPassword() {
+		return matchingPassword;
+	}
+
+	public void setMatchingPassword(String matchingPassword) {
+		this.matchingPassword = matchingPassword;
+	}
 
 	public String getUserName() {
 		return userName;
