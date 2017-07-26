@@ -8,7 +8,7 @@ public class MywrkWebAppInitializer extends
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// This will load data-tier and middle-tier dependencies.
-		return new Class<?>[]{PropertyPlaceholderConfig.class,PersistenceConfig.class};
+		return new Class<?>[]{PropertyPlaceholderConfig.class,PersistenceConfig.class, SecurityConfig.class};
 	}
 
 	@Override

@@ -86,6 +86,11 @@ public class User {
 			builder.append(password);
 			builder.append(", ");
 		}
+		if(matchingPassword != null){
+			builder.append("matchingPassword=");
+			builder.append(matchingPassword);
+			builder.append(", ");
+		}
 		if (email != null) {
 			builder.append("email=");
 			builder.append(email);

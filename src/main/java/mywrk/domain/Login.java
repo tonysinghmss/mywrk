@@ -2,14 +2,14 @@ package mywrk.domain;
 
 public class Login {
 	private String userName;
-	private String passwordSalt;
+	//private String passwordSalt;
 	private String passwordHash;
 	public static LoginBuilder newinstance(){
 		return new LoginBuilder();
 	}
 	private Login(LoginBuilder builder){
 		this.userName = builder.userName;
-		this.passwordSalt = builder.passwordSalt;
+		//this.passwordSalt = builder.passwordSalt;
 		this.passwordHash = builder.passwordHash;
 	}
 	public String getUserName() {
@@ -18,12 +18,12 @@ public class Login {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getPasswordSalt() {
+	/*public String getPasswordSalt() {
 		return passwordSalt;
 	}
 	public void setPasswordSalt(String passwordSalt) {
 		this.passwordSalt = passwordSalt;
-	}
+	}*/
 	public String getPasswordHash() {
 		return passwordHash;
 	}
@@ -33,7 +33,7 @@ public class Login {
 	
 	public static class LoginBuilder{
 		private String userName;
-		private String passwordSalt;
+		//private String passwordSalt;
 		private String passwordHash;
 		public Login build(){
 			return new Login(this);
@@ -44,10 +44,10 @@ public class Login {
 			return this;
 		}
 		
-		public LoginBuilder withPasswordSalt(String passwordSalt) {
+		/*public LoginBuilder withPasswordSalt(String passwordSalt) {
 			this.passwordSalt = passwordSalt;
 			return this;
-		}
+		}*/
 		
 		public LoginBuilder withPasswordHash(String passwordHash) {
 			this.passwordHash = passwordHash;
@@ -63,11 +63,11 @@ public class Login {
 			builder.append(userName);
 			builder.append(", ");
 		}
-		if (passwordSalt != null) {
+		/*if (passwordSalt != null) {
 			builder.append("passwordSalt=");
 			builder.append(passwordSalt);
 			builder.append(", ");
-		}
+		}*/
 		if (passwordHash != null) {
 			builder.append("passwordHash=");
 			builder.append(passwordHash);

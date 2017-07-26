@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,7 +24,7 @@ public class Logins implements java.io.Serializable {
 	private Long loginId;
 	private Users users;
 	private String userName;
-	private String passwordSalt;
+	//private String passwordSalt;
 	private String passwordHash;
 
 	public Logins() {
@@ -35,11 +35,11 @@ public class Logins implements java.io.Serializable {
 	}
 
 	public Logins(long loginId, Users users, String userName,
-			String passwordSalt, String passwordHash) {
+			 String passwordHash) {
 		this.loginId = loginId;
 		this.users = users;
 		this.userName = userName;
-		this.passwordSalt = passwordSalt;
+		//this.passwordSalt = passwordSalt;
 		this.passwordHash = passwordHash;
 	}
 
@@ -53,8 +53,8 @@ public class Logins implements java.io.Serializable {
 		this.loginId = loginId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "related_user_id")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
 	public Users getUsers() {
 		return this.users;
 	}
@@ -72,7 +72,7 @@ public class Logins implements java.io.Serializable {
 		this.userName = userName;
 	}
 
-	@Column(name = "password_salt")
+	/*@Column(name = "password_salt")
 	public String getPasswordSalt() {
 		return this.passwordSalt;
 	}
@@ -80,8 +80,8 @@ public class Logins implements java.io.Serializable {
 	public void setPasswordSalt(String passwordSalt) {
 		this.passwordSalt = passwordSalt;
 	}
-
-	@Column(name = "password_hash")
+*/
+	@Column(name = "password_hash", length=60)
 	public String getPasswordHash() {
 		return this.passwordHash;
 	}

@@ -4,11 +4,14 @@ package mywrk.dao.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,8 +29,8 @@ public class Users implements java.io.Serializable {
 	private String firstName;
 	private String lastName;
 	private String userName;
+	private Logins logins;
 	private Set<Orders> orderses = new HashSet<Orders>(0);
-	private Set<Logins> loginses = new HashSet<Logins>(0);
 	private Set<Memberships> membershipses = new HashSet<Memberships>(0);
 	private Set<Payments> paymentses = new HashSet<Payments>(0);
 
@@ -39,14 +42,14 @@ public class Users implements java.io.Serializable {
 	}
 
 	public Users(long userId, String firstName, String lastName,
-			String userName, Set<Orders> orderses, Set<Logins> loginses,
+			String userName, Set<Orders> orderses, Logins logins,
 			Set<Memberships> membershipses, Set<Payments> paymentses) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
 		this.orderses = orderses;
-		this.loginses = loginses;
+		this.logins = logins;
 		this.membershipses = membershipses;
 		this.paymentses = paymentses;
 	}
@@ -97,13 +100,13 @@ public class Users implements java.io.Serializable {
 		this.orderses = orderses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-	public Set<Logins> getLoginses() {
-		return this.loginses;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "users", optional=false, cascade=CascadeType.ALL)
+	public Logins getLogins() {
+		return this.logins;
 	}
 
-	public void setLoginses(Set<Logins> loginses) {
-		this.loginses = loginses;
+	public void setLogins(Logins logins) {
+		this.logins = logins;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")

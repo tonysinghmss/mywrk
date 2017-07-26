@@ -4,10 +4,14 @@ package mywrk.dao.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,6 +29,7 @@ public class Roles implements java.io.Serializable {
 	private Long roleId;
 	private String roleName;
 	private Set<Memberships> membershipses = new HashSet<Memberships>(0);
+	private Set<Privileges> privileges = new HashSet<>(0);
 
 	public Roles() {
 	}
@@ -66,5 +71,18 @@ public class Roles implements java.io.Serializable {
 	public void setMembershipses(Set<Memberships> membershipses) {
 		this.membershipses = membershipses;
 	}
+	
+	@ManyToMany
+	@JoinTable(name="role_privileges",
+				joinColumns=@JoinColumn(name="role_id", referencedColumnName = "roleId"),
+				inverseJoinColumns=@JoinColumn(name="privilege_id", referencedColumnName = "roleId"))
+	public Set<Privileges> getPrivileges() {
+		return privileges;
+	}
 
+	public void setPrivileges(Set<Privileges> privileges) {
+		this.privileges = privileges;
+	}
+	
+	
 }

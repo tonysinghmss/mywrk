@@ -78,7 +78,7 @@ public class RegistrationControllerTest {
 					)
 				//.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(view().name(RegistrationController.VIEW_HOME))
+				.andExpect(view().name(RegistrationController.VIEW_SUCCESS_REGISTER))
 				;
 	}
 	

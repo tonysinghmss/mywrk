@@ -1,20 +1,25 @@
 package mywrk.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import mywrk.dao.contracts.RegistrationRepo;
+import mywrk.dao.contracts.MembershipsRepository;
+import mywrk.dao.contracts.RegistrationRepository;
 import mywrk.dao.model.Memberships;
 import mywrk.dao.model.Users;
 import mywrk.domain.Login;
 import mywrk.domain.User;
 import mywrk.exception.EmailExistsException;
-import mywrk.security.SecurityUtils;
 @Service
-public class RegistrationService implements Registration {
+public class UserRegistrationService implements UserRegistration {
 	
-	@Autowired private RegistrationRepo registrationRepo;
+	@Autowired private RegistrationRepository registrationRepository;
+	@Autowired private MembershipsRepository membershipsRepository;
+	@Autowired private PasswordEncoder passwordEncoder;
 	
 	@Override
 	@Transactional
@@ -24,19 +29,20 @@ public class RegistrationService implements Registration {
               "There is an account with that email adress: "
               +  usr.getEmail());
         }
-		String pwdHash = SecurityUtils.getPasswordHash(usr.getPassword());
-		String pwdSalt = SecurityUtils.getPasswordSalt(usr.getPassword());
+		String pwdHash = passwordEncoder.encode(usr.getPassword());
+		//String pwdSalt = SecurityUtils.getPasswordSalt(usr.getPassword());
 		Login login = Login.newinstance()
 				.withUserName(usr.getUserName())
-				.withPasswordSalt(pwdSalt)
+				//.withPasswordSalt(pwdSalt)
 				.withPasswordHash(pwdHash)
 				.build();
-		return registrationRepo.registerNewUser(usr, login);
+		
+		return registrationRepository.registerNewUser(usr, login);
 	}
 	
 	private boolean emailExist(String email) {
-        Memberships memberships = registrationRepo.findByEmail(email);
-        if (memberships != null) {
+        List<Memberships> membershipsList = membershipsRepository.findByEmailAddrs(email);
+        if (!membershipsList.isEmpty()) {
             return true;
         }
         return false;
