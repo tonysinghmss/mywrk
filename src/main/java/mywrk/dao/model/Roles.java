@@ -73,7 +73,7 @@ public class Roles implements java.io.Serializable {
 	}
 	
 	@ManyToMany
-	@JoinTable(name="role_privileges",
+	@JoinTable(name="roles_privileges",
 				joinColumns=@JoinColumn(name="role_id", referencedColumnName = "roleId"),
 				inverseJoinColumns=@JoinColumn(name="privilege_id", referencedColumnName = "roleId"))
 	public Set<Privileges> getPrivileges() {
