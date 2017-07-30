@@ -38,10 +38,10 @@ public class Privileges implements java.io.Serializable  {
 	}
 	
 	@ManyToMany(mappedBy = "privileges")
-	public Set<Roles> getPrivileges() {
+	public Set<Roles> getRoles() {
 		return roles;
 	}
-	public void setPrivileges(Set<Roles> roles) {
+	public void setRoles(Set<Roles> roles) {
 		this.roles = roles;
 	}
 	

@@ -5,6 +5,7 @@ package mywrk.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -63,7 +64,7 @@ public class Roles implements java.io.Serializable {
 		this.roleName = roleName;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	public Set<Memberships> getMembershipses() {
 		return this.membershipses;
 	}
@@ -71,11 +72,9 @@ public class Roles implements java.io.Serializable {
 	public void setMembershipses(Set<Memberships> membershipses) {
 		this.membershipses = membershipses;
 	}
-	
+
 	@ManyToMany
-	@JoinTable(name="roles_privileges",
-				joinColumns=@JoinColumn(name="role_id", referencedColumnName = "roleId"),
-				inverseJoinColumns=@JoinColumn(name="privilege_id", referencedColumnName = "roleId"))
+	@JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "privilege_id"))
 	public Set<Privileges> getPrivileges() {
 		return privileges;
 	}
@@ -83,6 +82,5 @@ public class Roles implements java.io.Serializable {
 	public void setPrivileges(Set<Privileges> privileges) {
 		this.privileges = privileges;
 	}
-	
-	
+
 }

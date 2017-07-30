@@ -109,7 +109,7 @@ public class Users implements java.io.Serializable {
 		this.logins = logins;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users", cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	public Set<Memberships> getMembershipses() {
 		return this.membershipses;
 	}

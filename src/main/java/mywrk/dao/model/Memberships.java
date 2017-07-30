@@ -1,5 +1,7 @@
 package mywrk.dao.model;
 
+import javax.persistence.CascadeType;
+
 // Generated Jul 13, 2017 2:08:22 AM by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
@@ -53,7 +55,7 @@ public class Memberships implements java.io.Serializable {
 		this.membershipId = membershipId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "related_role_id")
 	public Roles getRoles() {
 		return this.roles;
@@ -63,7 +65,7 @@ public class Memberships implements java.io.Serializable {
 		this.roles = roles;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "related_user_id")
 	public Users getUsers() {
 		return this.users;
