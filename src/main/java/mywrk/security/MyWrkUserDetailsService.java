@@ -58,8 +58,8 @@ public class MyWrkUserDetailsService implements UserDetailsService {
     	//Spring's Role is equivalent to our application Privilege.
     	//By default each privilege( Spring's role) has a prefix "ROLE_".
     	return roles.stream()
-    			.flatMap(rl -> rl.getPrivileges().stream())
-    			.map(p -> p.getPrivilegeName())
+    			.flatMap(rl -> rl.getRolesprivilegeses().stream())
+    			.map(rp -> rp.getPrivileges().getPrivilegeName())
     			.collect(Collectors.toList());
     }
     private List<GrantedAuthority> getGrantedAuthorities (List<String> privileges) {
