@@ -49,7 +49,7 @@ public class Orderlineitems implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "orderlineitem_id", nullable = false)
 	public Long getOrderlineitemId() {
 		return this.orderlineitemId;

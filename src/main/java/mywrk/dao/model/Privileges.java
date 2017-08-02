@@ -3,12 +3,14 @@ package mywrk.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,10 +23,10 @@ public class Privileges implements java.io.Serializable  {
 	private static final long serialVersionUID = -6230488157600645134L;
 	private Long privilegeId;
 	private String privilegeName;
-	private Set<Roles> roles = new HashSet<>(0);
+	private Set<RolesPrivileges> rolesprivilegeses = new HashSet<>(0);
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "privilege_id", nullable = false)
 	public Long getPrivilegeId() {
 		return privilegeId;
@@ -39,13 +41,13 @@ public class Privileges implements java.io.Serializable  {
 	public void setPrivilegeName(String privilegeName) {
 		this.privilegeName = privilegeName;
 	}
-	
-	@ManyToMany(mappedBy = "privileges")
-	public Set<Roles> getRoles() {
-		return roles;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "privileges", cascade = {
+			CascadeType.PERSIST, CascadeType.MERGE })
+	public Set<RolesPrivileges> getRolesprivilegeses() {
+		return rolesprivilegeses;
 	}
-	public void setRoles(Set<Roles> roles) {
-		this.roles = roles;
+	public void setRolesprivilegeses(Set<RolesPrivileges> rolesprivilegeses) {
+		this.rolesprivilegeses = rolesprivilegeses;
 	}
-	
+		
 }

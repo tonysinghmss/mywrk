@@ -12,9 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,7 +29,7 @@ public class Roles implements java.io.Serializable {
 	private Long roleId;
 	private String roleName;
 	private Set<Memberships> membershipses = new HashSet<Memberships>(0);
-	private Set<Privileges> privileges = new HashSet<>(0);
+	private Set<RolesPrivileges> rolesprivilegeses = new HashSet<>(0);
 
 	public Roles() {
 	}
@@ -48,7 +45,7 @@ public class Roles implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id", nullable = false)
 	public Long getRoleId() {
 		return this.roleId;
@@ -67,7 +64,8 @@ public class Roles implements java.io.Serializable {
 		this.roleName = roleName;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = {
+			CascadeType.PERSIST, CascadeType.MERGE })
 	public Set<Memberships> getMembershipses() {
 		return this.membershipses;
 	}
@@ -75,15 +73,14 @@ public class Roles implements java.io.Serializable {
 	public void setMembershipses(Set<Memberships> membershipses) {
 		this.membershipses = membershipses;
 	}
-
-	@ManyToMany
-	@JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "privilege_id"))
-	public Set<Privileges> getPrivileges() {
-		return privileges;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = {
+			CascadeType.PERSIST, CascadeType.MERGE })
+	public Set<RolesPrivileges> getRolesprivilegeses() {
+		return rolesprivilegeses;
 	}
 
-	public void setPrivileges(Set<Privileges> privileges) {
-		this.privileges = privileges;
-	}
-
+	public void setRolesprivilegeses(Set<RolesPrivileges> rolesprivilegeses) {
+		this.rolesprivilegeses = rolesprivilegeses;
+	}	
 }

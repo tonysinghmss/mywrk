@@ -49,7 +49,7 @@ public class WorkStatus implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "work_status_id", nullable = false)
 	public Long getWorkStatusId() {
 		return this.workStatusId;

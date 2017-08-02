@@ -47,7 +47,7 @@ public class Invoices implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "invoice_id", nullable = false)
 	public Long getInvoiceId() {
 		return this.invoiceId;

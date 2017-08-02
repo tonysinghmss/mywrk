@@ -59,7 +59,7 @@ public class Orders implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_id", nullable = false)
 	public Long getOrderId() {
 		return this.orderId;

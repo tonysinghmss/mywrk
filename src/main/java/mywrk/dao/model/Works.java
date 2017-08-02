@@ -54,7 +54,7 @@ public class Works implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "work_id", nullable = false)
 	public Long getWorkId() {
 		return this.workId;

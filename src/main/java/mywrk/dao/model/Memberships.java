@@ -48,7 +48,7 @@ public class Memberships implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "membership_id", nullable = false)
 	public Long getMembershipId() {
 		return this.membershipId;
@@ -58,7 +58,7 @@ public class Memberships implements java.io.Serializable {
 		this.membershipId = membershipId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "related_role_id")
 	public Roles getRoles() {
 		return this.roles;
@@ -68,7 +68,7 @@ public class Memberships implements java.io.Serializable {
 		this.roles = roles;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "related_user_id")
 	public Users getUsers() {
 		return this.users;

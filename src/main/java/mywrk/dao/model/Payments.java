@@ -51,7 +51,7 @@ public class Payments implements java.io.Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "payment_id", nullable = false)
 	public Long getPaymentId() {
 		return this.paymentId;
