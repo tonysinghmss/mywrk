@@ -5,6 +5,8 @@ package mywrk.dao.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,11 +33,11 @@ public class Orderlineitems implements java.io.Serializable {
 	public Orderlineitems() {
 	}
 
-	public Orderlineitems(long orderlineitemId) {
+	public Orderlineitems(Long orderlineitemId) {
 		this.orderlineitemId = orderlineitemId;
 	}
 
-	public Orderlineitems(long orderlineitemId,
+	public Orderlineitems(Long orderlineitemId,
 			Invoicelineitems invoicelineitems, Orders orders, Works works,
 			Integer orderNumber, Boolean paid) {
 		this.orderlineitemId = orderlineitemId;
@@ -47,12 +49,13 @@ public class Orderlineitems implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "orderlineitem_id", nullable = false)
-	public long getOrderlineitemId() {
+	public Long getOrderlineitemId() {
 		return this.orderlineitemId;
 	}
 
-	public void setOrderlineitemId(long orderlineitemId) {
+	public void setOrderlineitemId(Long orderlineitemId) {
 		this.orderlineitemId = orderlineitemId;
 	}
 

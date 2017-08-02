@@ -9,6 +9,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -37,11 +39,11 @@ public class Users implements java.io.Serializable {
 	public Users() {
 	}
 
-	public Users(long userId) {
+	public Users(Long userId) {
 		this.userId = userId;
 	}
 
-	public Users(long userId, String firstName, String lastName,
+	public Users(Long userId, String firstName, String lastName,
 			String userName, Set<Orders> orderses, Logins logins,
 			Set<Memberships> membershipses, Set<Payments> paymentses) {
 		this.userId = userId;
@@ -55,12 +57,13 @@ public class Users implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", nullable = false)
-	public long getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -100,7 +103,7 @@ public class Users implements java.io.Serializable {
 		this.orderses = orderses;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "users", optional=false, cascade=CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "users")
 	public Logins getLogins() {
 		return this.logins;
 	}
@@ -109,7 +112,9 @@ public class Users implements java.io.Serializable {
 		this.logins = logins;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users", cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users" 
+			//,cascade={CascadeType.PERSIST,CascadeType.MERGE}
+	)
 	public Set<Memberships> getMembershipses() {
 		return this.membershipses;
 	}

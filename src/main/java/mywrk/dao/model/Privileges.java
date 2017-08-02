@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -22,6 +24,7 @@ public class Privileges implements java.io.Serializable  {
 	private Set<Roles> roles = new HashSet<>(0);
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "privilege_id", nullable = false)
 	public Long getPrivilegeId() {
 		return privilegeId;

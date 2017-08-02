@@ -5,9 +5,12 @@ package mywrk.dao.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,11 +42,11 @@ public class Orders implements java.io.Serializable {
 	public Orders() {
 	}
 
-	public Orders(long orderId) {
+	public Orders(Long orderId) {
 		this.orderId = orderId;
 	}
 
-	public Orders(long orderId, Users users, Date orderDttm, Date requiredDate,
+	public Orders(Long orderId, Users users, Date orderDttm, Date requiredDate,
 			Boolean fulfilled, Boolean paid,
 			Set<Orderlineitems> orderlineitemses) {
 		this.orderId = orderId;
@@ -56,12 +59,13 @@ public class Orders implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id", nullable = false)
-	public long getOrderId() {
+	public Long getOrderId() {
 		return this.orderId;
 	}
 
-	public void setOrderId(long orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 

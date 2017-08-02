@@ -5,9 +5,12 @@ package mywrk.dao.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,11 +38,11 @@ public class WorkCategory implements java.io.Serializable {
 	public WorkCategory() {
 	}
 
-	public WorkCategory(long workCategoryId) {
+	public WorkCategory(Long workCategoryId) {
 		this.workCategoryId = workCategoryId;
 	}
 
-	public WorkCategory(long workCategoryId, String categoryName,
+	public WorkCategory(Long workCategoryId, String categoryName,
 			String description, Long createdBy, Date creationDttm,
 			Set<Works> workses) {
 		this.workCategoryId = workCategoryId;
@@ -51,12 +54,13 @@ public class WorkCategory implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "work_category_id", nullable = false)
-	public long getWorkCategoryId() {
+	public Long getWorkCategoryId() {
 		return this.workCategoryId;
 	}
 
-	public void setWorkCategoryId(long workCategoryId) {
+	public void setWorkCategoryId(Long workCategoryId) {
 		this.workCategoryId = workCategoryId;
 	}
 

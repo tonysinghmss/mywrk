@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,11 +34,11 @@ public class Memberships implements java.io.Serializable {
 	public Memberships() {
 	}
 
-	public Memberships(long membershipId) {
+	public Memberships(Long membershipId) {
 		this.membershipId = membershipId;
 	}
 
-	public Memberships(long membershipId, Roles roles, Users users,
+	public Memberships(Long membershipId, Roles roles, Users users,
 			String emailAddrs, String phoneNumber) {
 		this.membershipId = membershipId;
 		this.roles = roles;
@@ -46,12 +48,13 @@ public class Memberships implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "membership_id", nullable = false)
-	public long getMembershipId() {
+	public Long getMembershipId() {
 		return this.membershipId;
 	}
 
-	public void setMembershipId(long membershipId) {
+	public void setMembershipId(Long membershipId) {
 		this.membershipId = membershipId;
 	}
 

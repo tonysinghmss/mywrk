@@ -4,9 +4,12 @@ package mywrk.dao.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,11 +37,11 @@ public class Payments implements java.io.Serializable {
 	public Payments() {
 	}
 
-	public Payments(long paymentId) {
+	public Payments(Long paymentId) {
 		this.paymentId = paymentId;
 	}
 
-	public Payments(long paymentId, Invoices invoices, Users users,
+	public Payments(Long paymentId, Invoices invoices, Users users,
 			BigDecimal amountPaid, Date paidOn) {
 		this.paymentId = paymentId;
 		this.invoices = invoices;
@@ -48,12 +51,13 @@ public class Payments implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "payment_id", nullable = false)
-	public long getPaymentId() {
+	public Long getPaymentId() {
 		return this.paymentId;
 	}
 
-	public void setPaymentId(long paymentId) {
+	public void setPaymentId(Long paymentId) {
 		this.paymentId = paymentId;
 	}
 

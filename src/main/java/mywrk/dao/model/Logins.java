@@ -2,9 +2,12 @@ package mywrk.dao.model;
 
 // Generated Jul 13, 2017 2:08:22 AM by Hibernate Tools 4.3.1
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -30,11 +33,11 @@ public class Logins implements java.io.Serializable {
 	public Logins() {
 	}
 
-	public Logins(long loginId) {
+	public Logins(Long loginId) {
 		this.loginId = loginId;
 	}
 
-	public Logins(long loginId, Users users, String userName,
+	public Logins(Long loginId, Users users, String userName,
 			 String passwordHash) {
 		this.loginId = loginId;
 		this.users = users;
@@ -44,17 +47,18 @@ public class Logins implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "login_id", nullable = false)
-	public long getLoginId() {
+	public Long getLoginId() {
 		return this.loginId;
 	}
 
-	public void setLoginId(long loginId) {
+	public void setLoginId(Long loginId) {
 		this.loginId = loginId;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@OneToOne(fetch = FetchType.LAZY, optional=false, cascade=CascadeType.ALL)
+	@JoinColumn(name = "related_user_id")
 	public Users getUsers() {
 		return this.users;
 	}

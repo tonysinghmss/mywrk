@@ -9,6 +9,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -35,23 +37,24 @@ public class Roles implements java.io.Serializable {
 	public Roles() {
 	}
 
-	public Roles(long roleId) {
+	public Roles(Long roleId) {
 		this.roleId = roleId;
 	}
 
-	public Roles(long roleId, String roleName, Set<Memberships> membershipses) {
+	public Roles(Long roleId, String roleName, Set<Memberships> membershipses) {
 		this.roleId = roleId;
 		this.roleName = roleName;
 		this.membershipses = membershipses;
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "role_id", nullable = false)
-	public long getRoleId() {
+	public Long getRoleId() {
 		return this.roleId;
 	}
 
-	public void setRoleId(long roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 

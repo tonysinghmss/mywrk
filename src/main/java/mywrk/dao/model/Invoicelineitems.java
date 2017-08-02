@@ -5,9 +5,12 @@ package mywrk.dao.model;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,11 +37,11 @@ public class Invoicelineitems implements java.io.Serializable {
 	public Invoicelineitems() {
 	}
 
-	public Invoicelineitems(long invoicelineitemId) {
+	public Invoicelineitems(Long invoicelineitemId) {
 		this.invoicelineitemId = invoicelineitemId;
 	}
 
-	public Invoicelineitems(long invoicelineitemId, Invoices invoices,
+	public Invoicelineitems(Long invoicelineitemId, Invoices invoices,
 			BigDecimal price, Set<Orderlineitems> orderlineitemses) {
 		this.invoicelineitemId = invoicelineitemId;
 		this.invoices = invoices;
@@ -47,12 +50,13 @@ public class Invoicelineitems implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "invoicelineitem_id", nullable = false)
-	public long getInvoicelineitemId() {
+	public Long getInvoicelineitemId() {
 		return this.invoicelineitemId;
 	}
 
-	public void setInvoicelineitemId(long invoicelineitemId) {
+	public void setInvoicelineitemId(Long invoicelineitemId) {
 		this.invoicelineitemId = invoicelineitemId;
 	}
 
