@@ -1,3 +1,4 @@
+CREATE SEQUENCE mywrk.logins_seq;
 CREATE TABLE mywrk.logins
 (
   login_id bigint,
@@ -11,7 +12,7 @@ WITH (
 ALTER TABLE mywrk.logins
   OWNER TO tony;
 
-
+CREATE SEQUENCE mywrk.memberships_seq;
 CREATE TABLE mywrk.memberships
 (
   membership_id bigint,
@@ -26,7 +27,7 @@ WITH (
 ALTER TABLE mywrk.memberships
   OWNER TO tony;
 
-
+CREATE SEQUENCE mywrk.privileges_seq;
 CREATE TABLE mywrk.privileges
 (
   privilege_id bigint,
@@ -37,7 +38,7 @@ WITH (
 );
 ALTER TABLE mywrk.privileges
   OWNER TO tony;
-
+CREATE SEQUENCE mywrk.roles_seq;
 CREATE TABLE mywrk.roles
 (
   role_id bigint,
@@ -48,9 +49,10 @@ WITH (
 );
 ALTER TABLE mywrk.roles
   OWNER TO tony;
-
+CREATE SEQUENCE mywrk.roles_privileges_seq;
 CREATE TABLE mywrk.roles_privileges
 (
+  rlspriv_id bigint,
   role_id bigint,
   privilege_id bigint
 )
@@ -59,7 +61,7 @@ WITH (
 );
 ALTER TABLE mywrk.roles_privileges
   OWNER TO tony;
-
+CREATE SEQUENCE mywrk.users_seq;
 CREATE TABLE mywrk.users
 (
   user_id bigint,
@@ -72,7 +74,7 @@ WITH (
 );
 ALTER TABLE mywrk.users
   OWNER TO tony;
-
+CREATE SEQUENCE mywrk.invoicelineitems_seq;
 CREATE TABLE mywrk.invoicelineitems
 (
     invoicelineitem_id bigint,
@@ -86,7 +88,8 @@ WITH (
 
 ALTER TABLE mywrk.invoicelineitems
     OWNER to tony;
-    
+
+CREATE SEQUENCE mywrk.invoices_seq;
 CREATE TABLE mywrk.invoices
 (
     invoice_id bigint,
@@ -99,7 +102,7 @@ WITH (
 
 ALTER TABLE mywrk.invoices
     OWNER to tony;
-    
+CREATE SEQUENCE mywrk.orderlineitems_seq;    
 CREATE TABLE mywrk.orderlineitems
 (
     orderlineitem_id bigint,
@@ -111,12 +114,11 @@ CREATE TABLE mywrk.orderlineitems
 )
 WITH (
     OIDS = FALSE
-)
-TABLESPACE pg_default;
+);
 
 ALTER TABLE mywrk.orderlineitems
     OWNER to tony;
-
+CREATE SEQUENCE mywrk.orders_seq;
 CREATE TABLE mywrk.orders
 (
     order_id bigint,
@@ -129,11 +131,12 @@ CREATE TABLE mywrk.orders
 WITH (
     OIDS = FALSE
 )
-TABLESPACE pg_default;
+;
 
 ALTER TABLE mywrk.orders
     OWNER to tony;
-    
+
+CREATE SEQUENCE mywrk.payments_seq;
 CREATE TABLE mywrk.payments
 (
     payment_id bigint,
@@ -148,7 +151,7 @@ WITH (
 
 ALTER TABLE mywrk.payments
     OWNER to tony;
-    
+CREATE SEQUENCE mywrk.work_category_seq;    
 CREATE TABLE mywrk.work_category
 (
     work_category_id bigint,
@@ -164,7 +167,7 @@ WITH (
 ALTER TABLE mywrk.work_category
     OWNER to tony;
    
- 
+ CREATE SEQUENCE mywrk.work_status_seq;  
 CREATE TABLE mywrk.work_status
 (
     work_status_id bigint,
@@ -178,7 +181,7 @@ WITH (
 ALTER TABLE mywrk.work_status
     OWNER to tony;
     
-
+CREATE SEQUENCE mywrk.works_seq;
 CREATE TABLE mywrk.works
 (
     work_id bigint,
