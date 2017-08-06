@@ -3,20 +3,30 @@ package mywrk.web;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+
+import mywrk.config.PersistenceConfig;
+import mywrk.config.SecSecurityConfig;
 import mywrk.config.WebAppConfig;
+import mywrk.dao.model.Users;
 import mywrk.domain.User;
+import mywrk.exception.EmailExistsException;
+import mywrk.service.UserRegistration;
+import mywrk.service.UserRegistrationService;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -25,21 +35,27 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { WebAppConfig.class })
+@ContextConfiguration(classes = { WebAppConfig.class, PersistenceConfig.class, SecSecurityConfig.class })
 @WebAppConfiguration
 public class RegistrationControllerTest {
 	private MockMvc mockMvc;
+	
+	@Spy private UserRegistration userRegistrationService = new UserRegistrationService();
 	
 	@InjectMocks
 	private RegistrationController regstrCtlr;
 	
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws EmailExistsException {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = standaloneSetup(regstrCtlr)
 					.setViewResolvers(viewResolver())
 					.build();
+		System.out.println("Test");
+		User usrTo = mock(User.class);
+		Users rgstrdUsr = mock(Users.class);
+		doReturn(rgstrdUsr).when(userRegistrationService).registerNewUser(usrTo);
 
 	}
 	
