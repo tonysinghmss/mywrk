@@ -53,8 +53,8 @@ CREATE SEQUENCE mywrk.roles_privileges_seq;
 CREATE TABLE mywrk.roles_privileges
 (
   rlspriv_id bigint,
-  role_id bigint,
-  privilege_id bigint
+  related_role_id bigint,
+  related_privilege_id bigint
 )
 WITH (
   OIDS=FALSE
@@ -68,7 +68,7 @@ CREATE TABLE mywrk.users
   first_name text,
   last_name text,
   user_name text,
-  is_enabled boolean
+  enabled boolean
 )
 WITH (
   OIDS=FALSE
