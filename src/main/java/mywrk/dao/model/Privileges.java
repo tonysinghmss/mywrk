@@ -24,6 +24,10 @@ public class Privileges implements java.io.Serializable  {
 	private Long privilegeId;
 	private String privilegeName;
 	private Set<RolesPrivileges> rolesprivilegeses = new HashSet<>(0);
+	public Privileges(){}
+	public Privileges(String privilegeName) {
+		this.privilegeName = privilegeName;
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

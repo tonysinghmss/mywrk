@@ -37,7 +37,11 @@ public class Roles implements java.io.Serializable {
 	public Roles(Long roleId) {
 		this.roleId = roleId;
 	}
-
+	
+	public Roles(String roleName){
+		this.roleName = roleName;
+	}
+	
 	public Roles(Long roleId, String roleName, Set<Memberships> membershipses) {
 		this.roleId = roleId;
 		this.roleName = roleName;

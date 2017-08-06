@@ -67,7 +67,8 @@ CREATE TABLE mywrk.users
   user_id bigint,
   first_name text,
   last_name text,
-  user_name text
+  user_name text,
+  is_enabled boolean
 )
 WITH (
   OIDS=FALSE

@@ -32,6 +32,7 @@ public class Users implements java.io.Serializable {
 	private String lastName;
 	private String userName;
 	private Logins logins;
+	private Boolean enabled;
 	private Set<Orders> orderses = new HashSet<Orders>(0);
 	private Set<Memberships> membershipses = new HashSet<Memberships>(0);
 	private Set<Payments> paymentses = new HashSet<Payments>(0);
@@ -44,7 +45,7 @@ public class Users implements java.io.Serializable {
 	}
 
 	public Users(Long userId, String firstName, String lastName,
-			String userName, Set<Orders> orderses, Logins logins,
+			String userName, Set<Orders> orderses, Boolean isEnabled, Logins logins,
 			Set<Memberships> membershipses, Set<Payments> paymentses) {
 		this.userId = userId;
 		this.firstName = firstName;
@@ -52,6 +53,7 @@ public class Users implements java.io.Serializable {
 		this.userName = userName;
 		this.orderses = orderses;
 		this.logins = logins;
+		this.enabled = isEnabled;
 		this.membershipses = membershipses;
 		this.paymentses = paymentses;
 	}
@@ -92,6 +94,15 @@ public class Users implements java.io.Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	
+	@Column(name="enabled")	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
