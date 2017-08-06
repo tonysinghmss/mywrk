@@ -3,7 +3,6 @@ package mywrk.dao.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,8 +44,7 @@ public class Privileges implements java.io.Serializable  {
 	public void setPrivilegeName(String privilegeName) {
 		this.privilegeName = privilegeName;
 	}
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "privileges", cascade = {
-			CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "privileges")
 	public Set<RolesPrivileges> getRolesprivilegeses() {
 		return rolesprivilegeses;
 	}

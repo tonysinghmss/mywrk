@@ -44,7 +44,7 @@ public class RolesPrivileges implements java.io.Serializable{
 		this.rlsPrivId = rlsPrivId;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
 	@JoinColumn(name = "related_role_id")
 	public Roles getRoles() {
 		return roles;
@@ -54,7 +54,7 @@ public class RolesPrivileges implements java.io.Serializable{
 		this.roles = roles;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
 	@JoinColumn(name = "related_privilege_id")
 	public Privileges getPrivileges() {
 		return privileges;

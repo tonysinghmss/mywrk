@@ -123,7 +123,7 @@ public class Users implements java.io.Serializable {
 		this.logins = logins;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users", cascade=CascadeType.MERGE)
 	public Set<Memberships> getMembershipses() {
 		return this.membershipses;
 	}

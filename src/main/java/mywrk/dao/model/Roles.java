@@ -37,11 +37,11 @@ public class Roles implements java.io.Serializable {
 	public Roles(Long roleId) {
 		this.roleId = roleId;
 	}
-	
-	public Roles(String roleName){
+
+	public Roles(String roleName) {
 		this.roleName = roleName;
 	}
-	
+
 	public Roles(Long roleId, String roleName, Set<Memberships> membershipses) {
 		this.roleId = roleId;
 		this.roleName = roleName;
@@ -68,8 +68,7 @@ public class Roles implements java.io.Serializable {
 		this.roleName = roleName;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = {
-			CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = CascadeType.MERGE)
 	public Set<Memberships> getMembershipses() {
 		return this.membershipses;
 	}
@@ -77,14 +76,13 @@ public class Roles implements java.io.Serializable {
 	public void setMembershipses(Set<Memberships> membershipses) {
 		this.membershipses = membershipses;
 	}
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = {
-			CascadeType.PERSIST, CascadeType.MERGE })
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "roles", cascade = CascadeType.MERGE)
 	public Set<RolesPrivileges> getRolesprivilegeses() {
 		return rolesprivilegeses;
 	}
 
 	public void setRolesprivilegeses(Set<RolesPrivileges> rolesprivilegeses) {
 		this.rolesprivilegeses = rolesprivilegeses;
-	}	
+	}
 }

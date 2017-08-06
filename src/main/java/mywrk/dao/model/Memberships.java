@@ -58,7 +58,7 @@ public class Memberships implements java.io.Serializable {
 		this.membershipId = membershipId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
 	@JoinColumn(name = "related_role_id")
 	public Roles getRoles() {
 		return this.roles;
@@ -68,7 +68,7 @@ public class Memberships implements java.io.Serializable {
 		this.roles = roles;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
 	@JoinColumn(name = "related_user_id")
 	public Users getUsers() {
 		return this.users;
