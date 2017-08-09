@@ -1,3 +1,4 @@
+CREATE SCHEMA IF NOT EXISTS mywrk;
 CREATE SEQUENCE mywrk.logins_seq;
 CREATE TABLE mywrk.logins
 (
@@ -156,8 +157,8 @@ CREATE SEQUENCE mywrk.work_category_seq;
 CREATE TABLE mywrk.work_category
 (
     work_category_id bigint,
-    category_name text COLLATE "default".pg_catalog,
-    description text COLLATE "default".pg_catalog,
+    category_name text,
+    description text,
     created_by bigint,
     creation_dttm timestamp without time zone
 )
